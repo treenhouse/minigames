@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>minesweeper</title>
+  </head>
+  <body>
+    <div id="app">
+        <table>
+            <tr v-for="row in rows">
+                <td v-for="cell in row" @click="clickCell(cell)" @contextmenu.prevent="flagCell(cell)">
+                    <div v-if="cell.isRevealed">
+                        <div v-if="cell.isMine">💣</div>
+                        <div v-else>{{ cell.neighbour }}</div>
+                    </div>
+                    <div v-else-if="cell.isFlagged">🚩</div>
+                </td>
+            </tr>
+    </div>
+  </body>
