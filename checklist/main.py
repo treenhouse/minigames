@@ -3,31 +3,31 @@ import json
 
 todo_count = 0
 
-eel.init('web')
+eel.init("web")
 
 def read_data():
-    with open('data.json', 'r') as file:
+    with open("data.json", "r") as file:
         content = json.loads(file.read())
     return content
 
 def write_data(content):
-    with open('data.json', 'w') as file:
+    with open("data.json", "w") as file:
         file.write(json.dumps(content))
     return content
 
 @eel.expose
 def create_todo(title):
     global todo_count
-    
+
     new_todo = {
-        'id': todo_count + 1,
+        "id": todo_count + 1,
         "title": title
     }
 
     content = read_data()
     content['todos'].append(new_todo)
 
-    write_data(data)
+    write_data(content)
     todo_count += 1
 
     return new_todo
@@ -44,17 +44,17 @@ def delete_todo(id):
     for todo in content['todos']:
         if todo['id'] == id:
             content['todos'].remove(todo)
-    
+
     write_data(content)
     todo_count -= 1
 
 import os
 if not os.path.exists("data.json"):
     file = open("data.json", "w")
-    file.write(json.dumps({'todos': []}))
+    file.write(json.dumps({"todos": []}))
     file.close()
 else:
     content = read_data()
     todo_count = len(content['todos'])
 
-eel.start('index.html')
+eel.start("index.html")
