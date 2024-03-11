@@ -1,4 +1,8 @@
 import random
+import eel
+
+eel.init("web")
+eel.start("index.html")
 
 def create_board(rows, cols, num_mines, move1):
     board = [[' ' for _ in range(cols)] for _ in range(rows)]
