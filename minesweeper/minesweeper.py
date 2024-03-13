@@ -11,7 +11,7 @@ def create_board(rows, cols, num_mines, move1):
     while len(mines) < num_mines:
         row = random.randint(0, rows - 1) 
         col = random.randint(0, cols - 1) 
-        if row == move1[0]-1 and col == list(move1)[1]-1:
+        if row == move1[0] and col == move1[1]:
             continue
         mines.add((row, col))
         board[row][col] = "X"
